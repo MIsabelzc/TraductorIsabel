@@ -1,37 +1,90 @@
 import os
 import streamlit as st
 from bokeh.models.widgets import Button
-#from bokeh.io import show
-#from bokeh.models import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 from PIL import Image
 import time
 import glob
 
-
-
 from gtts import gTTS
 from googletrans import Translator
 
+# -------------------------
+# BLOQUE DE PERSONALIZACIÓN
+# (solo cambia estos valores para personalizar)
+# -------------------------
+APP_TITLE = "TRADUCTOR · AURA"
+APP_SUBHEADER = "Habla — yo traduzco y te devuelvo audio y texto."
+SIDEBAR_TITLE = "Configuración del Traductor"
+SIDEBAR_TEXT = (
+    "Presiona el botón y, cuando escuches la señal, habla lo que quieras traducir. "
+    "Luego selecciona los idiomas y el acento deseado."
+)
+BUTTON_LABEL = "Escuchar  🎙️"
+IMAGE_WIDTH = 300
 
-st.title("TRADUCTOR.")
-st.subheader("Escucho lo que quieres traducir.")
+# Colores / fondo (puedes poner colores hex o gradientes CSS)
+BG_GRADIENT = "linear-gradient(135deg, #0f172a 0%, #0ea5e9 100%)"  # azul profundo -> celeste
+SIDEBAR_BG_OPACITY = "0.06"  # transparencia del fondo de la barra lateral
+TITLE_COLOR = "#ffffff"
+TEXT_COLOR = "#f1f5f9"
 
+# -------------------------
+# Aplicar estilo (CSS) — solo valores arriba si quieres cambiar
+# -------------------------
+page_style = f"""
+<style>
+/* Fondo principal con gradiente */
+[data-testid="stAppViewContainer"] > .main {{
+  background: {BG_GRADIENT};
+  background-attachment: fixed;
+}}
 
-image = Image.open('OIG7.jpg')
+/* Texto global */
+h1, h2, h3, .css-1v3fvcr, .css-1d391kg {{
+  color: {TITLE_COLOR} !important;
+}}
 
-st.image(image,width=300)
+/* Sidebar ligero/transparente */
+[data-testid="stSidebar"] {{
+  background: rgba(255,255,255,{SIDEBAR_BG_OPACITY});
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+}}
+
+/* Personaliza el widget de audio/markdown para resaltar sobre el fondo */
+.stAudio {{
+  background: rgba(255,255,255,0.03);
+  padding: 8px;
+  border-radius: 8px;
+}}
+
+/* Ajustes de texto normal */
+[class*="stText"], .css-1v3fvcr {{
+  color: {TEXT_COLOR} !important;
+}}
+</style>
+"""
+st.markdown(page_style, unsafe_allow_html=True)
+
+# -------------------------
+# Interfaz (idéntica en lógica a la tuya, solo usa los valores personalizables)
+# -------------------------
+st.title(APP_TITLE)
+st.subheader(APP_SUBHEADER)
+
+image = Image.open('imagen.png')
+st.image(image, width=IMAGE_WIDTH)
+
 with st.sidebar:
-    st.subheader("Traductor.")
-    st.write("Presiona el botón, cuando escuches la señal "
-                 "habla lo que quieres traducir, luego selecciona"   
-                 " la configuración de lenguaje que necesites.")
+    st.subheader(SIDEBAR_TITLE)
+    st.write(SIDEBAR_TEXT)
 
+st.write("Toca el botón y di lo que quieres traducir")
 
-st.write("Toca el Botón y habla lo que quires traducir")
-
-stt_button = Button(label=" Escuchar  🎤", width=300,  height=50)
+# label del botón usando el valor personalizado
+stt_button = Button(label=BUTTON_LABEL, width=300, height=50)
 
 stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
@@ -175,7 +228,6 @@ if result:
                     print("Deleted ", f)
 
     remove_files(7)
-           
 
 
         
