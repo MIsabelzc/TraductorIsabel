@@ -126,7 +126,12 @@ if result:
     text = str(result.get("GET_TEXT"))
     in_lang = st.selectbox(
         "Selecciona el lenguaje de Entrada",
-        ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés"),
+        (
+            "Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés",
+            "Francés", "Alemán", "Italiano", "Portugués", "Ruso", "Árabe",
+            "Hindi", "Turco", "Neerlandés", "Sueco", "Polaco", "Vietnamita",
+            "Tailandés", "Indonesio", "Hebreo"
+        ),
     )
     if in_lang == "Inglés":
         input_language = "en"
@@ -140,10 +145,45 @@ if result:
         input_language = "zh-cn"
     elif in_lang == "Japonés":
         input_language = "ja"
+    elif in_lang == "Francés":
+        input_language = "fr"
+    elif in_lang == "Alemán":
+        input_language = "de"
+    elif in_lang == "Italiano":
+        input_language = "it"
+    elif in_lang == "Portugués":
+        input_language = "pt"
+    elif in_lang == "Ruso":
+        input_language = "ru"
+    elif in_lang == "Árabe":
+        input_language = "ar"
+    elif in_lang == "Hindi":
+        input_language = "hi"
+    elif in_lang == "Turco":
+        input_language = "tr"
+    elif in_lang == "Neerlandés":
+        input_language = "nl"
+    elif in_lang == "Sueco":
+        input_language = "sv"
+    elif in_lang == "Polaco":
+        input_language = "pl"
+    elif in_lang == "Vietnamita":
+        input_language = "vi"
+    elif in_lang == "Tailandés":
+        input_language = "th"
+    elif in_lang == "Indonesio":
+        input_language = "id"
+    elif in_lang == "Hebreo":
+        input_language = "he"
     
     out_lang = st.selectbox(
         "Selecciona el lenguaje de salida",
-        ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés"),
+        (
+            "Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés",
+            "Francés", "Alemán", "Italiano", "Portugués", "Ruso", "Árabe",
+            "Hindi", "Turco", "Neerlandés", "Sueco", "Polaco", "Vietnamita",
+            "Tailandés", "Indonesio", "Hebreo"
+        ),
     )
     if out_lang == "Inglés":
         output_language = "en"
@@ -157,6 +197,36 @@ if result:
         output_language = "zh-cn"
     elif out_lang == "Japonés":
         output_language = "ja"
+    elif out_lang == "Francés":
+        output_language = "fr"
+    elif out_lang == "Alemán":
+        output_language = "de"
+    elif out_lang == "Italiano":
+        output_language = "it"
+    elif out_lang == "Portugués":
+        output_language = "pt"
+    elif out_lang == "Ruso":
+        output_language = "ru"
+    elif out_lang == "Árabe":
+        output_language = "ar"
+    elif out_lang == "Hindi":
+        output_language = "hi"
+    elif out_lang == "Turco":
+        output_language = "tr"
+    elif out_lang == "Neerlandés":
+        output_language = "nl"
+    elif out_lang == "Sueco":
+        output_language = "sv"
+    elif out_lang == "Polaco":
+        output_language = "pl"
+    elif out_lang == "Vietnamita":
+        output_language = "vi"
+    elif out_lang == "Tailandés":
+        output_language = "th"
+    elif out_lang == "Indonesio":
+        output_language = "id"
+    elif out_lang == "Hebreo":
+        output_language = "he"
     
     english_accent = st.selectbox(
         "Selecciona el acento",
@@ -229,8 +299,5 @@ if result:
 
     remove_files(7)
 
-
-        
-    
 
 
